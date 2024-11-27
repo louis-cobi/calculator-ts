@@ -11,6 +11,7 @@ export default function Calculator() {
     const [showOldInput, setShowOldInput] = useState<boolean>(false)
     const [prevSymbol, setPrevSymbol] = useState<string | null>(null)
     const [equalSignClicked, setEqualSignClicked] = useState<boolean>(false)
+    const [history, setHistory] = useState<string[]>([]);
 
     const currentInput: string | null = useMemo<string | null>(
         () => (showOldInput ? oldInput : input),
@@ -89,6 +90,10 @@ export default function Calculator() {
                     setHasError(true)
                     return
                 }
+                setHistory((prev) => [
+                    ...prev,
+                    `${total} ${prevSymbol} ${input} = ${finalTotal}`
+                ])
                 setInput(finalTotal.toString())
                 setPrevSymbol(null)
                 if (showOldInput) setShowOldInput(false)
@@ -148,7 +153,7 @@ export default function Calculator() {
 
     return (
         <div className="">
-            <Input error={hasError} input={currentInput ?? "0"} />
+            <Input error={hasError} input={currentInput ?? "0"} history={history} />
             <Buttons handleOnClick={handleButtonClick} />
         </div>
     )
