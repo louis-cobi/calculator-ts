@@ -9,7 +9,7 @@ export default function Calculator() {
     const [hasError, setHasError] = useState<boolean>(false)
     const [oldInput, setOldInput] = useState<string | null>(null)
     const [showOldInput, setShowOldInput] = useState<boolean>(false)
-    const [prevSymbol, setPrevSymbol] = useState<string | null>(null)
+    const [prevSymbol, setPrevSymbol] = useState<keyof Operators | null>(null)
     const [equalSignClicked, setEqualSignClicked] = useState<boolean>(false)
     const [history, setHistory] = useState<string[]>([]);
 
@@ -36,7 +36,7 @@ export default function Calculator() {
         setHasError(false)
     }
 
-    function prepareNextOperation(symbol: string) {
+    function prepareNextOperation(symbol: keyof Operators) {
         setPrevSymbol(symbol)
         setShowOldInput(true)
         setOldInput(input)
@@ -46,7 +46,7 @@ export default function Calculator() {
     function calculate(
         buffer: number,
         currentTotal: number,
-        symbol: string
+        symbol: keyof Operators
     ): number {
         return operations[symbol](currentTotal, buffer)
     }
