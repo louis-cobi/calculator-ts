@@ -152,7 +152,7 @@ export default function Calculator() {
     }
 
     return (
-        <div className="">
+        <div className="h-[80dvh] w-[90dvw] md:h-[70dvh] md:w-[400px] isolate aspect-video rounded-xl backdrop-blur-md backdrop-brightness-125 shadow-lg ring-1 ring-black/5 ">
             <Input error={hasError} input={currentInput ?? "0"} history={history} />
             <Buttons handleOnClick={handleButtonClick} />
         </div>

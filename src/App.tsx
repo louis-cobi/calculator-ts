@@ -1,14 +1,12 @@
-
-import './App.css'
-import Calculator from './components/Calculator'
+import "./App.css"
+import Calculator from "./components/Calculator"
 
 function App() {
-
-  return (
-    <>
-    <Calculator/>
-    </>
-  )
+    return (
+        <div className="flex justify-center items-center">
+            <Calculator />
+        </div>
+    )
 }
 
 export default App
